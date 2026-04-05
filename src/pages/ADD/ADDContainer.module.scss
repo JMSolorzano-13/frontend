@@ -1,0 +1,66 @@
+@use "../../mixins.scss";
+
+.TopMainWrapper {
+  @apply w-full justify-between flex-col items-start;
+  @include mixins.xl {
+    @apply flex-row items-start;
+  }
+  .LeftWrapper {
+    @apply flex-col items-start;
+    @include mixins.xxl {
+      @apply flex-row items-center;
+    }
+    .InnerLeftWrapper {
+      @apply flex-col items-start;
+      @include mixins.sm {
+        @apply flex-row;
+      }
+    }
+  }
+}
+
+.TotalsWrapper {
+  @apply flex flex-col w-full bg-white;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0 !important;
+  @include mixins.xl {
+    @apply flex-row min-w-full;
+  }
+}
+
+.MainCardsWrapper {
+  @apply bg-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.TittleAndSyncDate {
+  @apply flex flex-col;
+
+  @include mixins.sm {
+    @apply justify-between items-center flex flex-row;
+  }
+}
+
+.cardWrapper {
+  @apply flex flex-col bg-white gap-4;
+}
+
+.CFDIsSectionBackground {
+  @apply flex justify-between p-4 w-full bg-white;
+}
+
+.SearchBarMenu {
+  @include mixins.md {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #f4f4f4;
+    padding-bottom: 8px;
+  }
+}

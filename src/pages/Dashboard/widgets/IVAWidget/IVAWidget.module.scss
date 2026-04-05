@@ -1,0 +1,17 @@
+@use "../../../../mixins.scss";
+@use "../../../../theme.scss";
+
+.Widget {
+  @apply col-span-7;
+  @include mixins.xxl {
+    @apply col-span-9;
+  }
+}
+
+:global(.iva-widget-tabs .ant-tabs-tab-active) {
+  background-color: theme("colors.primary") !important;
+}
+
+:global(.iva-widget-tabs .ant-tabs-tab-active .ant-tabs-tab-btn) {
+  color: #fff !important;
+}

@@ -1,0 +1,53 @@
+@use "../../mixins.scss";
+
+.Sider {
+  position: absolute !important;
+  height: calc(100vh - 64px) !important;
+  overflow-y: auto;
+  z-index: 10 !important;
+  max-width: 100% !important;
+  min-width: 200px;
+  padding-top: 40px;
+  @include mixins.md {
+    position: inherit !important;
+    padding-top: 0;
+  }
+}
+
+.Sider::-webkit-scrollbar {
+  width: 4px;
+  background-color: transparent;
+}
+
+.SiderContainer {
+  @apply flex flex-col justify-between h-full;
+  background-color: #009dff;
+}
+
+.ClearFix {
+  @apply absolute z-50 w-2/5;
+  right: 0;
+  top: 64;
+  height: calc(100vh - 64px);
+}
+
+.SATStatus {
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  @apply mb-4 text-center;
+  & > p {
+    @apply mt-2;
+  }
+  p {
+    @apply tracking-wide leading-6 cursor-default text-white;
+  }
+}
+
+.BitacoraButton:hover {
+  color: theme("colors.primary_focus");
+}
+
+.lastSyncDates {
+  @apply text-sm;
+}

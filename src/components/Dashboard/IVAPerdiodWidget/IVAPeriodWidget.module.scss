@@ -1,0 +1,11 @@
+@use "../../../mixins.scss";
+
+.Widget {
+  @apply col-span-7;
+  @include mixins.xxl {
+    @apply col-span-2;
+  }
+  height: auto;
+  overflow: hidden;
+  align-self: start;
+}

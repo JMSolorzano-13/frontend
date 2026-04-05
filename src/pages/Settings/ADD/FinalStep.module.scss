@@ -1,0 +1,95 @@
+.FinalStepContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ConnectionDescription {
+  font-size: 16px;
+}
+
+.StatusContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-wrap: wrap;
+}
+
+.StatusRow {
+  display: flex;
+  align-items: center;
+}
+
+.TitleMargins {
+  margin-right: 20px;
+  margin-bottom: 0px;
+}
+
+.FinalStepRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.BlueTitle {
+  color: #096dd9 !important;
+  font-size: 14px !important;
+}
+
+.Divider {
+  background-color: #878787;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.RedBanner {
+  background-color: rgba(229, 30, 30, 0.24);
+  min-height: 35px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  span {
+    padding: 5px;
+    word-wrap: break-word;
+  }
+}
+
+.YellowBanner {
+  background-color: rgba(229, 162, 30, 0.24);
+  min-height: 35px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  span {
+    padding: 5px;
+    word-wrap: break-word;
+  }
+}
+
+.RowContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.SelectDropDown {
+  .ant-select-item-option-content {
+    font-size: 11px !important;
+  }
+  .ant-select-selector {
+    font-size: 11px !important;
+  }
+}

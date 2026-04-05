@@ -1,0 +1,47 @@
+@use "../../mixins.scss";
+
+.TopMainWrapper {
+  @apply w-full justify-between flex-col items-start;
+  @include mixins.sm {
+    @apply flex-row items-start;
+  }
+  .LeftWrapper {
+    @apply flex-col items-start;
+    @include mixins.sm {
+      @apply flex-row items-center flex-wrap;
+    }
+    .InnerLeftWrapper {
+      @apply flex-col items-start;
+      @include mixins.sm {
+        @apply flex-row;
+      }
+    }
+  }
+}
+
+.ExpandableColumnButton {
+  font-size: 10px;
+  border-width: 2px;
+  padding: 2px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.ExpandableRowButton {
+  font-size: 8px;
+  border-color: "gray";
+  border-width: 2px;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.SearchBarMenu {
+  @include mixins.md {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #f4f4f4;
+    padding-bottom: 8px;
+  }
+}

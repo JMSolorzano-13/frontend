@@ -1,0 +1,8 @@
+.Main {
+  .FilterBar {
+    @apply flex justify-between mb-4;
+    .SearchInput {
+      @apply w-64;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+name: Ezaudita Frontend Checks
+
+env:
+  MANUAL: ""
+
+on:
+  pull_request:
+    branches: [qa]
+
+jobs:
+  check_code:
+    name: Check code
+    runs-on: runner-siigo
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@7c12f8017d5436eb855f1ed4399f037a36fbd9e8
+        with:
+          node-version: "18.15.x"
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Check PR to QA code
+        if: github.event.pull_request.base.ref == 'qa'
+        run: yarn eslint --no-error-on-unmatched-pattern $(git diff --name-only HEAD ${{ github.event.pull_request.base.sha }} | grep -E '\.(js|jsx|tsx|ts)$' | xargs)
+
+      - name: Build project
+        run: yarn build

@@ -1,0 +1,9 @@
+export const FETCH_ISR_CFDIS_ACTION = "isr/getISRCFDIsAction";
+export const FETCH_ISR_TOTALS_ACTION = "isr/getISRTotalsAction";
+export const FETCH_ISR_TOTALS_DEDUCTIONS_ACTION = "isr/getISRTotalsDeductionsAction";
+export const UPDATE_PERCENTAGE_DEDUCTIONS_ACTION = "isr/updateISRPercentageDeductionsAction";
+export const EXPORT_ISR_TABLE = "isr/exportISRTable";
+export const EXPORT_ISR_TABLE_SUCCESS = "isr/exportISRTableSuccess";
+export const EXPORT_ISR_TABLE_ERROR = "isr/exportISRTableError";
+export const FETCH_UPDATE_ISR_CFDI_ACTION = "isr/updateISRCFDIAction";
+export const UPDATE_ISR_DOCTOS_ACTION = "isr/updateISRDoctosAction";

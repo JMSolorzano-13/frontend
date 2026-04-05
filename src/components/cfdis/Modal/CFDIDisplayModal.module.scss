@@ -1,0 +1,8 @@
+@use "../../../mixins.scss";
+
+.ModalTitle {
+  @apply w-full justify-between flex-col items-start;
+  @include mixins.md {
+    @apply flex-row;
+  }
+}

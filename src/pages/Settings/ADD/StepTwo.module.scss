@@ -1,0 +1,66 @@
+@use "../../../mixins.scss";
+
+.StepTwoContainer {
+  display: flex;
+  margin-top: 40px;
+}
+
+.GuideContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 20px;
+  @include mixins.custom-br(1200px) {
+    flex-direction: row;
+  }
+}
+
+.WindowsInstaller {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: "center";
+}
+
+.CaseTwoContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.MR_20 {
+  margin-right: 20px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.PendingTag {
+  font-size: 17px;
+  height: 22px;
+  background-color: #096dd900;
+  border-width: 0;
+  margin-left: -7px;
+}
+
+.StatusContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.BlueTitle {
+  color: #096dd9 !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  // font-size: 18px !important;
+}
+
+.RefreshSection {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

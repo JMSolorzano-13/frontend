@@ -1,0 +1,14 @@
+export const FETCH_INFORMATION_ACTION = "information/fetch_action";
+export const UPDATE_INFORMATION_ACTION = "information/update_action";
+export const FETCH_INFORMATION_ACTION_SUCCESS = "information/fetchSuccess";
+export const FETCH_INFORMATION_ACTION_ERROR = "information/fetchErrors";
+export const UPDATE_INFORMATION_ACTION_SUCCESS = "information/updateSuccess";
+export const UPDATE_INFORMATION_ACTION_ERROR = "information/updateErrors";
+export const LOADING_INFORMATION_ACTION = "information/loading";
+export const ERROR_INFORMATION_ACTION = "information/error";
+export const FETCH_INFORMATION_ACTION_RETRY = "information/fetch_action_retry";
+export const FETCH_INFORMATION_ACTION_SUCCESS_RETRY = "information/fetchSuccess_retry";
+export const FETCH_INFORMATION_ACTION_ERROR_RETRY = "information/fetchErrors_retry";
+export const LOADING_INFORMATION_ACTION_RETRY = "information/loading_retry";
+export const LOADING_INFORMATION_ACTION_RETRY_SUCCESS = "information/loading_retry_success";
+export const LOADING_INFORMATION_ACTION_RETRY_REJECTED = "information/loading_retry_rejected";

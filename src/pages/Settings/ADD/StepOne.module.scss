@@ -1,0 +1,56 @@
+.StepOneContainer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.GuideContainer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
+.WindowsInstaller {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: "center";
+}
+
+.CaseOneContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.MR_20 {
+  margin-right: 20px;
+}
+
+.ActivateAddContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: "wrap";
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.GreenBanner {
+  background-color: rgba(8, 109, 217, 0.29);
+  min-height: 35px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  span {
+    p {
+      padding: 5px;
+      word-wrap: break-word;
+    }
+  }
+}

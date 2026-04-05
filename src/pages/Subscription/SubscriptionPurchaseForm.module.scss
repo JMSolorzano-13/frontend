@@ -1,0 +1,652 @@
+@use "../../mixins.scss";
+
+$color-primary: #0070b3;
+
+.FormWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: -18px;
+  ul {
+    list-style-type: none;
+  }
+  @include mixins.xl {
+    width: 100%;
+    margin-left: 12px;
+  }
+  .SelectBtn {
+    width: 50px;
+    font-size: 23px;
+    border-radius: 10px;
+    transition: all 400ms ease-in-out;
+    &:hover {
+      background-color: whitesmoke;
+    }
+  }
+  .MainBody {
+    min-width: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 193px;
+    gap: 15px;
+    border: 2px solid #e9e9e9;
+    border-radius: 10px;
+    padding: 17px;
+    transition: all 200ms ease-in-out;
+    h6 {
+      font-weight: 500;
+    }
+    h3 {
+      line-height: 1;
+      @apply inline-block;
+      div {
+        font-size: 15px;
+        @apply inline-block;
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      li {
+        text-align: center;
+      }
+    }
+  }
+
+  .OldPrice {
+    font-weight: 800;
+    @apply text-extra_gray;
+    text-decoration: line-through;
+    font-size: 15px;
+  }
+  .DiscountSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .IVA {
+    line-height: 0;
+    font-size: small;
+    margin: -8px 0 15px 0;
+  }
+  .SelectedBody {
+    @apply border-primary shadow-lg;
+    transform: scale(1.05);
+  }
+  .Advice {
+    background-color: red;
+  }
+}
+
+.SecSection {
+  @apply flex justify-between mt-6 items-center;
+  height: 180px;
+  @include mixins.xs {
+    @apply flex-col;
+    height: 370px;
+    align-items: center;
+  }
+  @include mixins.sm {
+    @apply flex-col;
+    height: 180px;
+  }
+  @include mixins.md {
+    @apply flex-col gap-4;
+  }
+  @include mixins.lg {
+    @apply flex-row;
+  }
+
+  .ExtraUsersSection {
+    @apply flex gap-3 mt-1 mb-4;
+    height: 100%;
+    align-self: start;
+    @include mixins.xs {
+      @apply flex-col items-center;
+      align-self: center;
+    }
+
+    @include mixins.sm {
+      @apply items-start;
+      align-self: center;
+    }
+
+    @include mixins.lg {
+      @apply flex-row gap-3 items-center;
+      align-self: start;
+    }
+
+    .ExtraUsers {
+      @apply rounded-lg border border-gray-300 mt-6 mb-10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 17px;
+
+      h6 {
+        @apply text-center font-semibold mt-0 mb-0;
+        font-size: 15px;
+      }
+
+      button {
+        @apply block mx-auto;
+      }
+
+      .ExtraLabels {
+        @apply flex mt-2;
+        align-items: center;
+        justify-content: center;
+
+        label {
+          @apply block text-center mr-2;
+        }
+
+        .ExtraUsersInput {
+          @apply block text-right;
+        }
+      }
+
+      .Switch {
+        @apply block mt-3;
+      }
+    }
+
+    .ExtraPrice {
+      @apply block text-center font-semibold my-2;
+      color: $color-primary;
+    }
+
+    .ExtraPriceDiscount {
+      @apply block text-center font-semibold mt-2;
+      color: gray;
+    }
+
+    .InputNumber {
+      @apply block w-full;
+    }
+
+    Switch {
+      @apply block mt-2;
+    }
+  }
+}
+
+.PayButtonSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  align-self: start;
+  @include mixins.xs {
+    align-self: center;
+    align-items: center;
+  }
+  @include mixins.sm {
+    align-self: center;
+    align-items: center;
+  }
+  @include mixins.lg {
+    align-self: start;
+    align-items: flex-end;
+  }
+}
+
+.BottomSection {
+  @apply flex flex-col justify-between w-1/2 ml-2;
+  @include mixins.xs {
+    @apply flex-col items-center gap-7 mt-7 w-full;
+    text-align: center;
+  }
+  @include mixins.sm {
+    @apply mt-5 w-full;
+    text-align: center;
+  }
+  @include mixins.lg {
+    @apply mt-0 w-1/2;
+    text-align: left;
+  }
+  .LeftSection {
+    @apply flex flex-col text-gray-600 gap-2;
+  }
+  .RightSection {
+    @apply flex justify-end gap-2;
+  }
+}
+
+.Spinning {
+  @apply flex justify-center;
+}
+
+.DisabledButton {
+  h3 {
+    @apply text-secondary;
+  }
+  &:hover {
+    @apply cursor-not-allowed;
+  }
+}
+
+.ClickableButton {
+  h3 {
+    @apply text-primary;
+  }
+}
+
+.RecipientLabel {
+  @apply text-center mt-2;
+  @include mixins.sm {
+    @apply text-center;
+  }
+  @include mixins.md {
+    @apply text-center;
+  }
+  @include mixins.lg {
+    @apply text-right;
+  }
+}
+
+.Resume {
+  @apply mt-10 mb-5;
+
+  .Title {
+    @apply text-2xl font-medium mb-2;
+  }
+
+  .Info {
+    @apply flex space-x-7;
+    align-items: center;
+
+    @include mixins.xs {
+      @apply flex-col gap-2;
+    }
+
+    @include mixins.sm {
+      @apply flex-col gap-2;
+    }
+
+    @include mixins.md {
+      @apply flex-col gap-11;
+    }
+
+    @include mixins.lg {
+      justify-content: center;
+    }
+
+    @include mixins.xl {
+      @apply flex-row gap-2;
+      justify-content: left;
+    }
+
+    table {
+      .Label {
+        @apply font-semibold;
+        text-align: right;
+        color: $color-primary;
+      }
+
+      .LabelResult {
+        @apply font-semibold;
+        color: $color-primary;
+        text-align: right;
+      }
+
+      .LabelExtra {
+        @apply font-semibold;
+        text-align: right;
+        color: $color-primary;
+      }
+
+      .LabelInfo {
+        @apply w-10;
+        color: $color-primary;
+
+        .ant-tooltip-inner {
+          min-width: 385px !important;
+        }
+      }
+
+      .LabelTotal {
+        @apply font-semibold;
+        text-align: right;
+        border-top: $color-primary 1px solid;
+        color: $color-primary;
+      }
+    }
+
+    .Vigency {
+      @apply text-center;
+
+      h6 {
+        @apply font-semibold;
+        font-size: 15px;
+      }
+
+      span {
+        @apply font-medium;
+        font-size: 13px;
+        color: $color-primary;
+      }
+    }
+
+    .Prorate {
+      @apply text-center flex flex-col gap-2;
+
+      h6 {
+        @apply font-medium;
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 12px;
+        @apply inline-block relative;
+
+        span {
+          @apply font-medium;
+        }
+      }
+
+      .ProratePrice {
+        @apply font-semibold mt-2;
+        color: $color-primary;
+
+        p {
+          font-size: 14px;
+        }
+
+        span {
+          @apply font-bold;
+          color: $color-primary;
+        }
+      }
+    }
+
+    .Discount {
+      @apply w-auto;
+
+      div {
+        @apply rounded-lg text-white text-center p-2 px-2;
+        background: #e6f4ff;
+        border: 0.5px solid #91caff;
+        color: rgb(82, 82, 82);
+      }
+
+      h6 {
+        @apply text-lg font-medium;
+      }
+
+      h4 {
+        @apply font-semibold;
+        font-size: 20px;
+      }
+
+      p {
+        @apply text-base font-medium text-extra_dark mt-1 text-center;
+
+        span {
+          color: $color-primary;
+        }
+
+        .OldPrice {
+          @apply text-extra_gray line-through;
+        }
+      }
+    }
+
+    .Total {
+      @apply text-center;
+
+      h6 {
+        @apply font-semibold uppercase;
+        font-size: 18px;
+      }
+
+      h5 {
+        @apply text-2xl font-semibold;
+        color: $color-primary;
+      }
+
+      p {
+        @apply font-medium text-extra_dark mt-1 text-center;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .Alerts {
+    @apply mt-5 p-1;
+    font-size: 11px;
+
+    p {
+      line-height: 20px;
+
+      span {
+        @apply font-semibold;
+      }
+
+      .BeginAlert {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.SubscriptionCardContainer {
+  position: relative;
+}
+
+@keyframes upLabelsm {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes upLabelxl {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.LabelTag {
+  position: absolute;
+  margin-top: -230px;
+  margin-left: 154px;
+  background-color: #0070b3;
+  color: white;
+  border-radius: 10%/50%;
+  padding: 0 10px;
+  font-weight: bold;
+  animation-name: upLabelsm;
+  animation-duration: 0.4s;
+  transform: scale(1.05);
+  @include mixins.xl {
+    animation-name: upLabelxl;
+  }
+}
+
+.LabelTagDiscount {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  background-color: #0070b3;
+  color: white;
+  border-radius: 10%/50%;
+  padding: 0 10px;
+  font-weight: bold;
+  animation-name: upLabelsm;
+  animation-duration: 0.4s;
+  transform: scale(1.05);
+  @include mixins.xl {
+    animation-name: upLabelxl;
+  }
+}
+
+.ActiveLabelTag {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  background-color: #0070b3;
+  color: white;
+  border-radius: 20%/50%;
+  padding: 0 10px;
+  font-weight: bold;
+  transition: all 200ms ease-in-out;
+}
+
+.ActiveLabelTagDiscount {
+  position: absolute;
+  top: -13px;
+  right: -13px;
+  background-color: #0070b3;
+  color: white;
+  border-radius: 20%/50%;
+  padding: 0 10px;
+  font-weight: bold;
+  transition: all 200ms ease-in-out;
+}
+
+.SelectedActiveLabel {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  // margin-top: -230px;
+  // margin-left: 196px;
+  // @include mixins.xl {
+  //   margin-top: -230px;
+  // }
+}
+
+.SelectedActiveLabelDiscount {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  // margin-top: -257px;
+  // margin-left: 196px;
+  @include mixins.xl {
+    // margin-top: -257px;
+  }
+}
+
+.ProductDetails li {
+  margin-top: -12px;
+}
+
+.BottomNote {
+  margin-top: -15px;
+  margin-left: 12px;
+}
+
+.ExtrasIVA {
+  font-size: 11px;
+  text-align: center;
+  @apply -my-1;
+}
+
+.LineThrough {
+  position: absolute;
+  background-color: gray;
+  height: 1px;
+  width: 40%;
+  margin-top: -7px;
+  margin-left: 50px;
+}
+
+.PlanCardCurrentCentered {
+  justify-content: center;
+}
+
+.PlanCardCentered {
+  justify-content: center;
+}
+.PlanCardBetween {
+  justify-content: space-between;
+}
+
+.LineThroughDespachos {
+  position: absolute;
+  background-color: gray;
+  height: 1px;
+  width: 41%;
+  margin-top: -7px;
+  margin-left: 50px;
+}
+
+.LineThroughExtras {
+  position: absolute;
+  background-color: gray;
+  height: 1px;
+  width: 65px;
+  margin-top: -12px;
+  margin-left: 70px;
+}
+
+.BuenFinDiscount {
+  line-height: 0.5;
+  color: gray;
+}
+
+.Cents {
+  font-size: 15px;
+}
+
+.BuenFinSection {
+  display: flex;
+  flex-direction: column;
+  margin-top: -20px;
+  margin-bottom: 40px;
+}
+
+.BuenFinBold {
+  font-weight: 600;
+}
+
+.RequirementsHeader {
+  border-bottom: 1px solid #e5e7eb;
+  @apply p-4;
+}
+
+.RequirementsHeader p {
+  @apply font-semibold;
+  font-size: 14px;
+}
+
+.RequirementsBody {
+  background-color: rgba(9, 109, 217, 0.15);
+  @apply py-4 px-6;
+  border-radius: 5px;
+}
+
+.RequirementsBody p {
+  margin-left: -1rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+.RequirementsBody li {
+  list-style-type: disc;
+  font-size: 14px;
+}
+
+.RequirementsSubtitle {
+  color: $color-primary;
+  font-size: 14px;
+  @apply font-semibold mb-3;
+}
+
+.RequirementsText {
+  font-size: 14px;
+  @apply mb-3;
+}
+
+.RequirementsContainer {
+  @apply p-5;
+}

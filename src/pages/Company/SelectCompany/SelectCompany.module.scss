@@ -1,0 +1,37 @@
+@use "../../../mixins.scss";
+
+.Main {
+  @apply flex justify-center;
+  .Card {
+    @apply w-full;
+    @include mixins.lg {
+      @apply w-4/5;
+    }
+    @include mixins.xl {
+      @apply w-2/4;
+    }
+    @include mixins.xxl {
+      @apply w-2/5;
+    }
+    h5 {
+      @apply mb-8;
+    }
+    .FilterBar {
+      @apply flex justify-between mb-4;
+      .SearchInput {
+        @apply w-64;
+      }
+    }
+  }
+}
+.BottomActions {
+  @apply flex justify-end;
+}
+
+.Row {
+  @apply cursor-pointer;
+}
+
+.BuySubButton {
+  @apply mt-4;
+}

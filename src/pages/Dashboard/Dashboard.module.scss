@@ -1,0 +1,8 @@
+@use "../../mixins.scss";
+
+.Widgets {
+  @apply grid grid-flow-row auto-rows-auto grid-cols-1 gap-4 xl:grid-cols-7 lg:grid-cols-4;
+  @include mixins.xxl {
+    @apply grid-cols-9;
+  }
+}

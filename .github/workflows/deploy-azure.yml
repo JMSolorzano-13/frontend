@@ -1,0 +1,52 @@
+# Build Vite app and deploy to Azure Static Web Apps.
+# Repo: https://github.com/JMSolorzano-13/frontend
+#
+# Secrets: AZURE_STATIC_WEB_APPS_API_TOKEN (required). AZURE_CREDENTIALS is not used in this workflow.
+# Variables: VITE_REACT_APP_BASE_URL (must end with /api for go_backend), VITE_COGNITO_CLIENT_ID,
+#            VITE_SKIP_B2C, VITE_APP_LOGO_URL — plus optional VITE_COGNITO_URL when not skipping B2C.
+
+name: Deploy Azure (SWA)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**/*.md"
+      - ".github/**"
+
+permissions:
+  contents: read
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820080
+        with:
+          node-version: "18.15.0"
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Install and build
+        env:
+          VITE_REACT_APP_BASE_URL: ${{ vars.VITE_REACT_APP_BASE_URL }}
+          VITE_COGNITO_CLIENT_ID: ${{ vars.VITE_COGNITO_CLIENT_ID }}
+          VITE_SKIP_B2C: ${{ vars.VITE_SKIP_B2C }}
+          VITE_APP_LOGO_URL: ${{ vars.VITE_APP_LOGO_URL }}
+          VITE_COGNITO_URL: ${{ vars.VITE_COGNITO_URL }}
+        run: yarn install --frozen-lockfile && yarn build
+
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: dist
+          api_location: ""
+          output_location: ""
+          skip_app_build: true

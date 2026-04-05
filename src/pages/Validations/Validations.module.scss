@@ -1,0 +1,12 @@
+@use "../../mixins.scss";
+
+.SearchBarMenu {
+  @include mixins.md {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #f4f4f4;
+    padding-bottom: 8px;
+  }
+}

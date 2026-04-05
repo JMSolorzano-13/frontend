@@ -1,0 +1,93 @@
+@use "./theme.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: #f4f4f4;
+  font-size: 14px;
+}
+
+body {
+  @apply font-roboto w-auto h-auto;
+  background-color: unset;
+}
+
+p {
+  @apply text-base font-roboto font-normal;
+  line-height: 1rem;
+}
+
+h6 {
+  @apply text-xl font-roboto font-normal;
+}
+
+h5 {
+  @apply text-2xl font-roboto font-medium;
+}
+
+h4 {
+  @apply text-3xl font-roboto font-medium;
+}
+
+h3 {
+  @apply font-roboto font-bold;
+  font-size: 1.875rem;
+}
+
+h2 {
+  @apply font-roboto font-bold;
+  font-size: 2.5rem;
+}
+
+h1 {
+  @apply font-roboto font-extrabold;
+  font-size: 2.75rem;
+}
+
+.ant-image-preview-img-wrapper img {
+  display: inline !important;
+}
+
+button,
+.ant-btn-primary {
+  background-color: theme("colors.primary");
+}
+
+button,
+.ant-btn-default {
+  background-color: #ffff;
+}
+
+.inmplayer-expandable-image-holder > img {
+  max-width: none !important;
+}
+
+.inmplayer-debug-panel {
+  left: 35px !important;
+}
+
+#tooltip {
+  min-width: 350px !important;
+  text-align: center;
+}
+
+#tooltip-days-left {
+  min-width: 370px !important;
+  text-align: center;
+}
+
+.secondary-concepts-table {
+  background-color: #eff3f4;
+  scrollbar-color: #eff3f4 #eff3f4;
+}
+
+#concepts-id-table .ant-table-cell {
+  background-color: #eff3f4;
+}
+
+.capitalize-first-letter::first-letter {
+  @apply uppercase;
+}

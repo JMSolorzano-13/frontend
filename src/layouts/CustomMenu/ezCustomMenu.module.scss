@@ -1,0 +1,40 @@
+@use "../../mixins.scss";
+
+.Sider {
+  position: absolute !important;
+  height: calc(100vh - 64px) !important;
+  z-index: 10 !important;
+  max-width: 100% !important;
+  padding-top: 40px;
+  @include mixins.md {
+    position: inherit !important;
+    padding-top: 0;
+  }
+}
+
+.SiderContainer {
+  @apply flex flex-col justify-between h-full;
+  background-color: #474747;
+}
+
+.ClearFix {
+  @apply absolute z-50 w-2/5;
+  right: 0;
+  top: 64;
+  height: calc(100vh - 64px);
+}
+
+.SATStatus {
+  @apply text-gray-200 mb-4 text-center;
+  & > p {
+    @apply mt-2;
+  }
+  p {
+    @apply tracking-wide leading-6 cursor-default;
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+
+.lastSyncDates {
+  @apply text-sm;
+}

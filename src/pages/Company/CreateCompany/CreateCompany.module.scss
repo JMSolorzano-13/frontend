@@ -1,0 +1,27 @@
+@use "../../../mixins.scss";
+
+.Main {
+  @apply flex justify-center;
+  .Card {
+    @apply w-full;
+    @include mixins.lg {
+      @apply w-4/5;
+    }
+    @include mixins.xl {
+      @apply w-2/4;
+    }
+    @include mixins.xxl {
+      @apply w-2/5;
+    }
+    h5 {
+      @apply mb-8;
+    }
+  }
+}
+.BottomActions {
+  @apply flex justify-end;
+}
+.Button {
+  display: flex !important;
+  align-items: center !important;
+}

@@ -1,0 +1,7 @@
+.LogoSection {
+    @apply flex items-center justify-center mb-12;
+    svg {
+      max-width: 17rem;
+      width: 100%;
+    }
+}

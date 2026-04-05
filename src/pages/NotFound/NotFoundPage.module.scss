@@ -1,0 +1,44 @@
+@use "../../mixins.scss";
+
+.FlexContainer {
+  @apply flex items-center justify-center w-full h-screen;
+  div {
+    @apply text-center;
+  }
+  .LogoSection {
+    @apply flex justify-center mb-7;
+    svg {
+      max-width: 17rem;
+    }
+  }
+  .Image {
+    @apply flex justify-center;
+    svg {
+      max-width: 20rem;
+    }
+    @include mixins.md {
+      svg {
+        max-width: 22rem;
+      }
+    }
+    @include mixins.xl {
+      svg {
+        max-width: 25rem;
+      }
+    }
+    @include mixins.xxl {
+      svg {
+        min-width: 35rem;
+      }
+    }
+  }
+  .Title {
+    @apply text-secondary;
+  }
+  .TextInfo {
+    @apply leading-6 mb-7;
+  }
+  .ButtonSection {
+    @apply flex justify-around mt-3 mb-5 flex-wrap;
+  }
+}

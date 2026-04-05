@@ -1,0 +1,117 @@
+import { IS_SIIGO } from "@utils/SIIGO/Global";
+
+export const CFDI_PAYMENT_RECEIVED_DEFAULT_COLUMNS: TableLayout = [
+  { column: "attachments_count", visible: true },
+  { column: "FechaFiltro", visible: true },
+  { column: "Fecha", visible: false },
+  { column: "Version", visible: false },
+  { column: "LugarExpedicion", visible: false },
+  { column: "Serie", visible: true },
+  { column: "Folio", visible: true },
+  { column: "UUID", visible: false },
+  { column: "RfcEmisor", visible: true },
+  { column: "NombreEmisor", visible: true },
+  { column: "RegimenFiscalReceptor", visible: false },
+  { column: "RegimenFiscalReceptorDesc", visible: false },
+  { column: "BaseIVA16", visible: true },
+  { column: "IVATrasladado16", visible: false },
+  { column: "BaseIVA8", visible: true },
+  { column: "IVATrasladado8", visible: false },
+  { column: "BaseIVA0", visible: true },
+  { column: "BaseIVAExento", visible: true },
+  { column: "TrasladosIVA", visible: true },
+  { column: "RetencionesIVA", visible: true },
+  { column: "RetencionesISR", visible: false },
+  { column: "RetencionesIEPS", visible: false },
+  { column: "Total", visible: true },
+  {
+    column: "total_docto_relacionados",
+    visible: false,
+  },
+  { column: "FormaPago", visible: false },
+  { column: "FormaPagoCodigo", visible: false },
+  { column: "Moneda", visible: false },
+  { column: "TipoCambio", visible: false },
+  { column: "Monto", visible: false },
+  { column: "NumOperacion", visible: false },
+  {
+    column: "RfcEmisorCtaOrd",
+    visible: false,
+  },
+  { column: "NomBancoOrdExt", visible: false },
+  { column: "CtaOrdenante", visible: false },
+  { column: "RfcEmisorCtaBen", visible: false },
+  { column: "CtaBeneficiario", visible: false },
+  { column: "TipoCadPago", visible: false },
+  { column: "UUIDRelacionado", visible: false },
+  { column: "TipoRelacion", visible: false },
+  { column: "pr_count", visible: false },
+];
+
+IS_SIIGO && CFDI_PAYMENT_RECEIVED_DEFAULT_COLUMNS.push({ column: "polizas", visible: true });
+
+export const CFDI_PAYMENT_ISSUED_DEFAULT_COLUMNS: TableLayout = [
+  { column: "attachments_count", visible: true },
+  { column: "FechaFiltro", visible: true },
+  { column: "Fecha", visible: false },
+  { column: "Version", visible: false },
+  { column: "LugarExpedicion", visible: false },
+  { column: "Serie", visible: true },
+  { column: "Folio", visible: true },
+  { column: "UUID", visible: false },
+  { column: "RfcReceptor", visible: true },
+  { column: "NombreReceptor", visible: true },
+  { column: "BaseIVA16", visible: true },
+  { column: "IVATrasladado16", visible: false },
+  { column: "BaseIVA8", visible: true },
+  { column: "IVATrasladado8", visible: false },
+  { column: "BaseIVA0", visible: true },
+  { column: "BaseIVAExento", visible: true },
+  { column: "TrasladosIVA", visible: true },
+  { column: "RetencionesIVA", visible: true },
+  { column: "RetencionesISR", visible: false },
+  { column: "RetencionesIEPS", visible: false },
+  { column: "Total", visible: true },
+  {
+    column: "total_docto_relacionados",
+    visible: false,
+  },
+  { column: "FormaPago", visible: false },
+  { column: "FormaPagoCodigo", visible: false },
+  { column: "Moneda", visible: false },
+  { column: "TipoCambio", visible: false },
+  { column: "Monto", visible: false },
+  { column: "NumOperacion", visible: false },
+  {
+    column: "RfcEmisorCtaOrd",
+    visible: false,
+  },
+  { column: "NomBancoOrdExt", visible: false },
+  { column: "CtaOrdenante", visible: false },
+  { column: "RfcEmisorCtaBen", visible: false },
+  { column: "CtaBeneficiario", visible: false },
+  { column: "TipoCadPago", visible: false },
+  { column: "UUIDRelacionado", visible: false },
+  { column: "TipoRelacion", visible: false },
+  { column: "pr_count", visible: false },
+];
+
+IS_SIIGO && CFDI_PAYMENT_ISSUED_DEFAULT_COLUMNS.push({ column: "polizas", visible: true });
+
+export const CFDI_PAYMENTS_TOTALS_COLUMNS: TableLayout = [
+  { column: "tipo", visible: true }, //
+  { column: "count", visible: true }, //
+  { column: "PaymentRelatedCount", visible: false },
+  { column: "BaseIVA16", visible: true },
+  { column: "IVATrasladado16", visible: false },
+  { column: "BaseIVA8", visible: true },
+  { column: "IVATrasladado8", visible: false },
+  { column: "BaseIVA0", visible: true },
+  { column: "BaseIVAExento", visible: true },
+  { column: "TrasladosIVA", visible: true },
+  { column: "RetencionesIVA", visible: true },
+  { column: "RetencionesISR", visible: false },
+  { column: "RetencionesIEPS", visible: false },
+  { column: "Total", visible: true }, //
+  { column: "total_docto_relacionados", visible: true }, //
+];

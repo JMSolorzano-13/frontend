@@ -1,0 +1,8 @@
+@use "../../../mixins.scss";
+
+.Wrapper {
+  @apply flex-col items-start;
+  @include mixins.lg {
+    @apply flex-row items-center;
+  }
+}

@@ -1,0 +1,22 @@
+.TotalTable {
+  // min-width: 100%;
+  thead {
+    tr {
+      th:first-child {
+        background-color: rgba(0, 112, 179, 0.2);
+      }
+      th {
+        padding: 0;
+        text-align: center !important;
+      }
+      th[class*="ant-table-cell lastTwo"] {
+        font-size: 12px !important;
+        min-width: 150px;
+      }
+    }
+  }
+}
+
+.ant-table .ant-table-container .ant-table-content table thead.ant-table-thead .ant-table-cell {
+  text-align: center;
+}

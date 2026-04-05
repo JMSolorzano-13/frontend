@@ -1,0 +1,16 @@
+.MenuOptionsContainer {
+  &:hover {
+    background-color: white !important;
+  }
+}
+
+.MenuOptions {
+  &:hover {
+    background-color: theme("colors.sg_secondary.200");
+
+    a {
+      color: theme("colors.primary");
+    }
+  }
+  transition: background 0.2s;
+}

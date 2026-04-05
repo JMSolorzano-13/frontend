@@ -1,0 +1,42 @@
+.LastSyncContainer {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 185px;
+  border-radius: 6px;
+  padding: 8px 4px;
+  gap: 5px;
+  cursor: pointer;
+  margin: 0 8px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.LastSyncDotContainer {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 6px;
+}
+
+.LastSyncInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.LastSyncDotStatus {
+  width: 11px;
+  height: 11px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+}
+
+.IncompleteDot {
+  background-color: theme("colors.sg_warning.300");
+}
+
+.CompleteDot {
+  background-color: theme("colors.sg_success.300");
+}

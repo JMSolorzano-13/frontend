@@ -1,0 +1,31 @@
+@use "../../mixins.scss";
+
+.TopMainWrapper {
+  @apply w-full justify-between flex-col items-start;
+  @include mixins.custom-br(1840px) {
+    @apply flex-row items-start;
+  }
+  .LeftWrapper {
+    @apply flex-col items-start;
+    @include mixins.xxl {
+      @apply flex-row items-center;
+    }
+    .InnerLeftWrapper {
+      @apply flex-col items-start;
+      @include mixins.sm {
+        @apply flex-row;
+      }
+    }
+  }
+}
+
+.SearchBarMenu {
+  @include mixins.md {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #f4f4f4;
+    padding-bottom: 8px;
+  }
+}

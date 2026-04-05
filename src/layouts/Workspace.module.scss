@@ -1,0 +1,103 @@
+@use "../mixins.scss";
+
+.Header {
+  @apply flex justify-between items-center;
+  .HamButton {
+    @include mixins.md {
+      @apply hidden;
+    }
+  }
+  .Logo {
+    @apply flex items-center justify-center h-full;
+    @apply hidden;
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-bottom: 14px;
+    margin-left: -18px;
+    svg {
+      max-width: 12rem;
+      width: 100%;
+    }
+    @include mixins.md {
+      @apply flex;
+    }
+  }
+
+  .ezLogo {
+    @apply flex items-center justify-center h-full;
+    @apply hidden;
+    svg {
+      max-width: 12rem;
+      width: 100%;
+    }
+    @include mixins.md {
+      @apply flex;
+    }
+  }
+
+  .SmallLogo {
+    @apply flex items-center h-full;
+    svg {
+      max-width: 2.5rem;
+      width: 100%;
+    }
+    @include mixins.md {
+      @apply hidden;
+    }
+  }
+}
+
+.CompanySelect {
+  @apply hidden;
+}
+
+.ContentLayout {
+  height: calc(100vh - 64px);
+  .Content {
+    @apply overflow-x-hidden overflow-y-scroll h-full;
+  }
+}
+.UserDropdown {
+  color: theme("colors.primary");
+  cursor: pointer;
+  margin-left: -5px;
+
+  &:hover {
+    color: theme("colors.sg_primary.600");
+  }
+}
+
+.VerticalDivider {
+  width: 2px;
+  height: 20px;
+  background-color: theme("colors.sg_secondary.300");
+  margin-left: -5px;
+}
+
+.SupportDropdown {
+  color: theme("colors.primary");
+  cursor: pointer;
+  height: 25px;
+  border: 1.5px solid theme("colors.sg_primary.500");
+  padding: 1rem;
+  border-radius: 7px;
+  display: flex;
+
+  &:hover {
+    color: theme("colors.sg_primary.600");
+  }
+}
+
+.HelpCaret {
+  margin-top: 28px !important;
+}
+.UserDropdownMenu {
+  top: 53px !important;
+}
+
+.CompanyName {
+  text-overflow: ellipsis;
+  max-width: 244px;
+  overflow: hidden;
+  white-space: nowrap;
+}

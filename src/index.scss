@@ -1,0 +1,118 @@
+@use "fonts";
+@use "./theme.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: #f4f4f4;
+  font-size: 16px;
+}
+
+body {
+  @apply font-nunito w-auto h-auto;
+  background-color: unset;
+}
+
+p {
+  @apply text-base font-nunito font-normal;
+  line-height: 1rem;
+}
+
+h6 {
+  @apply font-nunito;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+
+h5 {
+  @apply font-nunito;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 24px;
+}
+
+h4 {
+  @apply font-nunito;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+h3 {
+  @apply font-nunito;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+}
+
+h2 {
+  @apply font-nunito;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 40px;
+}
+
+h1 {
+  @apply font-nunito;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 40px;
+}
+
+a {
+  &:hover {
+    color: theme("colors.primary");
+  }
+}
+
+.ant-image-preview-img-wrapper img {
+  display: inline !important;
+}
+
+button,
+.ant-btn-primary {
+  background-color: theme("colors.primary");
+}
+
+button,
+.ant-btn-default {
+  background-color: #ffff;
+}
+
+.inmplayer-expandable-image-holder > img {
+  max-width: none !important;
+}
+
+.inmplayer-debug-panel {
+  left: 35px !important;
+}
+
+#tooltip {
+  min-width: 350px !important;
+  text-align: center;
+}
+
+#tooltip-days-left {
+  min-width: 370px !important;
+  text-align: center;
+}
+
+.secondary-concepts-table {
+  background-color: #eff3f4;
+  scrollbar-color: #eff3f4 #eff3f4;
+}
+
+#concepts-id-table .ant-table-cell {
+  background-color: #eff3f4;
+}
+
+.capitalize-first-letter::first-letter {
+  @apply uppercase;
+}
+
+.ant-table-expanded-row > td {
+  padding: 0 !important;
+}
