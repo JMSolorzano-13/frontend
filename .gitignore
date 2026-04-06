@@ -26,4 +26,3 @@ dist-ssr
 .env.examplea
 .gitconfig
 gitflow-installer.sh
-yarn.lock
