@@ -1,9 +1,10 @@
 # Build Vite app and deploy to Azure Static Web Apps.
 # Repo: https://github.com/JMSolorzano-13/frontend
 #
-# Secrets: AZURE_STATIC_WEB_APPS_API_TOKEN (required). AZURE_CREDENTIALS is not used in this workflow.
-# Variables: VITE_REACT_APP_BASE_URL (must end with /api for go_backend), VITE_COGNITO_CLIENT_ID,
-#            VITE_SKIP_B2C, VITE_APP_LOGO_URL — plus optional VITE_COGNITO_URL when not skipping B2C.
+# Secret (Actions → Secrets): AZURE_STATIC_WEB_APPS_API_TOKEN — SWA deploy key from terraform output frontend_sensitive.
+# Variables (Actions → Variables, not Secrets): VITE_* below — workflow uses vars.*; values are baked into the public JS bundle.
+#   VITE_REACT_APP_BASE_URL — https://<backend_ingress_fqdn>/api (stable hostname; do not use revision-only FQDN).
+#   VITE_COGNITO_CLIENT_ID, VITE_SKIP_B2C, VITE_APP_LOGO_URL; optional VITE_COGNITO_URL when not skipping B2C.
 
 name: Deploy Azure (SWA)
 
@@ -14,7 +15,6 @@ on:
       - main
     paths-ignore:
       - "**/*.md"
-      - ".github/**"
 
 permissions:
   contents: read
@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820080
+      - uses: actions/setup-node@v4
         with:
           node-version: "18.15.0"
           cache: yarn
