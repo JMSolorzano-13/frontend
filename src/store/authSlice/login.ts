@@ -90,27 +90,11 @@ const login = createAsyncThunk<LoginData, Credentials, { rejectValue: RejectData
             tokenData = (await http.post("/User/auth", payload)).data;
           }
         } catch (e: any) {
-          const statusCode = e.request.status;
-          const errorMessage = e.response.data.Message;
-          const errorLogin = e.response.data.state;
-          // #region agent log
-          fetch("http://127.0.0.1:7595/ingest/58a2cefb-c472-4635-9044-4240e60cb4df", {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "28c9f7" },
-            body: JSON.stringify({
-              sessionId: "28c9f7",
-              location: "login.ts:User/auth-error",
-              message: "POST /User/auth failed",
-              data: {
-                hypothesisId: "H-auth",
-                status: statusCode,
-                code: e.response?.data?.Code,
-                msg: errorMessage,
-              },
-              timestamp: Date.now(),
-            }),
-          }).catch(() => {});
-          // #endregion
+          const statusCode = e.response?.status ?? e.request?.status;
+          const data = e.response?.data;
+          const errorMessage =
+            typeof data?.Message === "string" ? data.Message : "";
+          const errorLogin = data?.state;
           dispatch(logout());
           if (statusCode === 428) {
             const { challenge_name, challenge_session } = JSON.parse(e.request.response);
@@ -128,9 +112,10 @@ const login = createAsyncThunk<LoginData, Credentials, { rejectValue: RejectData
               customMessage: errorLogin,
             });
           }
+          const msgLower = errorMessage.toLowerCase();
           if (
-            errorMessage === "Invalid credentials" ||
-            e.response.data.includes("Incorrect username or password")
+            msgLower.includes("invalid credentials") ||
+            msgLower.includes("incorrect username or password")
           ) {
             return rejectWithValue({
               message:
