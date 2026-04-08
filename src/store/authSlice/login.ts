@@ -60,7 +60,7 @@ const login = createAsyncThunk<LoginData, Credentials, { rejectValue: RejectData
     const payload = {
       flow: "USER_PASSWORD_AUTH",
       params: {
-        USERNAME: email,
+        USERNAME: email != null ? String(email).trim().toLowerCase() : "",
         PASSWORD: password,
       },
     };
@@ -98,6 +98,24 @@ const login = createAsyncThunk<LoginData, Credentials, { rejectValue: RejectData
           const statusCode = e.request.status;
           const errorMessage = e.response.data.Message;
           const errorLogin = e.response.data.state;
+          // #region agent log
+          fetch("http://127.0.0.1:7595/ingest/58a2cefb-c472-4635-9044-4240e60cb4df", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "28c9f7" },
+            body: JSON.stringify({
+              sessionId: "28c9f7",
+              location: "login.ts:User/auth-error",
+              message: "POST /User/auth failed",
+              data: {
+                hypothesisId: "H-auth",
+                status: statusCode,
+                code: e.response?.data?.Code,
+                msg: errorMessage,
+              },
+              timestamp: Date.now(),
+            }),
+          }).catch(() => {});
+          // #endregion
           dispatch(logout());
           if (statusCode === 428) {
             const { challenge_name, challenge_session } = JSON.parse(e.request.response);
