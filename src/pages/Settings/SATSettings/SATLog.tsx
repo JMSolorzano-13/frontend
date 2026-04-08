@@ -43,7 +43,11 @@ export default function SATLog() {
   const dispatch = useAppDispatch();
   const { stripeStatus } = useSubscriptionData();
 
-  const isSubInactive = stripeStatus === "canceled" || stripeStatus === "past_due";
+  // Local / B2C-skipped stacks often expose a non-billing stripe_status; do not block SAT manual sync.
+  const skipBillingGate =
+    import.meta.env.VITE_SKIP_B2C === "1" || import.meta.env.VITE_ALLOW_MANUAL_SAT_SYNC === "1";
+  const isSubInactive =
+    !skipBillingGate && (stripeStatus === "canceled" || stripeStatus === "past_due");
 
   const [lastSatLogRequest, setLastSatLogRequest] = useState<LastTimeSatLogRequestedType | null>(
     getCurrentItemFromLastSatLogRequest(localStorage.getItem("lastTimeSatLogRequested"))
@@ -144,34 +148,29 @@ export default function SATLog() {
     }
   }, [differenceDaySinceManualSync]);
 
+  const manualDownloadDisabled =
+    !manualSync.canRequest ||
+    (currentLastManualSync &&
+      Math.abs(moment(currentLastManualSync?.lastSyncDate).diff(new Date(), "minutes")) <= 16) ||
+    fetchingSatManualSync ||
+    fetchingNewSatLog ||
+    simulatedLoading ||
+    isSubInactive;
+
   const menuDescargas = [
     {
       key: "company",
       label: "Para esta empresa.",
       onClick: () => setManualSyncModal(true),
       icon: <CloudSyncOutlined style={{ fontSize: "18px" }} />,
-      disabled:
-        !manualSync.canRequest ||
-        (currentLastManualSync &&
-          Math.abs(moment(currentLastManualSync?.lastSyncDate).diff(new Date(), "minutes")) <=
-            16) ||
-        fetchingSatManualSync ||
-        fetchingNewSatLog ||
-        simulatedLoading,
+      disabled: manualDownloadDisabled,
     },
     {
       key: "all",
       label: "Para todas las empresas de la suscripción.",
       icon: <CloudSyncOutlined style={{ fontSize: "18px" }} />,
       onClick: () => setManualSyncAllModal(true),
-      disabled:
-        !manualSync.canRequest ||
-        (currentLastManualSync &&
-          Math.abs(moment(currentLastManualSync?.lastSyncDate).diff(new Date(), "minutes")) <=
-            16) ||
-        fetchingSatManualSync ||
-        fetchingNewSatLog ||
-        simulatedLoading,
+      disabled: manualDownloadDisabled,
     },
   ];
 
@@ -216,23 +215,13 @@ export default function SATLog() {
           />
           {companyList.length > 1 ? (
             <Dropdown menu={{ items: menuDescargas }} placement="bottomRight">
-              <Button>Descarga manual</Button>
+              <Button disabled={manualDownloadDisabled}>Descarga manual</Button>
             </Dropdown>
           ) : (
             <Button
               // type="primary"
               onClick={() => setManualSyncModal(true)}
-              disabled={
-                !manualSync.canRequest ||
-                (currentLastManualSync &&
-                  Math.abs(
-                    moment(currentLastManualSync?.lastSyncDate).diff(new Date(), "minutes")
-                  ) <= 16) ||
-                fetchingSatManualSync ||
-                fetchingNewSatLog ||
-                simulatedLoading ||
-                isSubInactive
-              }
+              disabled={manualDownloadDisabled}
             >
               Descarga manual
             </Button>
