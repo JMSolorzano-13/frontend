@@ -84,15 +84,10 @@ const login = createAsyncThunk<LoginData, Credentials, { rejectValue: RejectData
               expires_in: response.data.expiresIn,
               token_type: response.data.tokenType,
             };
+          } else if (IS_SIIGO && !NEEDS_EZ_LOGIN && code) {
+            tokenData = (await http.get(`/User/auth/${code}`)).data;
           } else {
-            tokenData =
-              IS_SIIGO && !NEEDS_EZ_LOGIN
-                ? await (
-                    await http.get(`/User/auth/${code}`)
-                  ).data
-                : await (
-                    await http.post("/User/auth", payload)
-                  ).data;
+            tokenData = (await http.post("/User/auth", payload)).data;
           }
         } catch (e: any) {
           const statusCode = e.request.status;
@@ -153,12 +148,13 @@ const login = createAsyncThunk<LoginData, Credentials, { rejectValue: RejectData
           });
         }
 
-        aToken = IS_SIIGO && !NEEDS_EZ_LOGIN ? tokenData.id_token : tokenData.IdToken;
+        const wasOIDC = IS_SIIGO && !NEEDS_EZ_LOGIN && Boolean(code);
+        aToken = wasOIDC ? tokenData.id_token : tokenData.IdToken;
         localStorage.setItem(
           "refreshToken",
-          IS_SIIGO && !NEEDS_EZ_LOGIN ? tokenData.refresh_token : tokenData.RefreshToken
+          wasOIDC ? tokenData.refresh_token : tokenData.RefreshToken
         );
-        setCookie("token", tokenData.IdToken);
+        setCookie("token", aToken ?? tokenData.IdToken);
       }
       setToken(aToken);
       let userData: UserData | null = null;
