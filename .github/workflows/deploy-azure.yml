@@ -1,12 +1,12 @@
-# Build Vite app and deploy to Azure Static Web Apps.
+# Build Vite app and deploy to Azure Static Web Apps (FastAPI / siigofiscal stack only).
 # Repo: https://github.com/JMSolorzano-13/frontend
 #
-# Secret (Actions → Secrets): AZURE_STATIC_WEB_APPS_API_TOKEN — SWA deploy key from terraform output frontend_sensitive.
-# Variables (Actions → Variables, not Secrets): VITE_* below — workflow uses vars.*; values are baked into the public JS bundle.
-#   VITE_REACT_APP_BASE_URL — https://<backend_ingress_fqdn>/api (stable hostname; do not use revision-only FQDN).
-#   VITE_COGNITO_CLIENT_ID, VITE_SKIP_B2C, VITE_APP_LOGO_URL; optional VITE_COGNITO_URL when not skipping B2C.
+# GitHub: Settings → Environments → create environment named exactly: azure-siigofiscal
+#   Secret:  AZURE_STATIC_WEB_APPS_API_TOKEN  (Terraform output frontend_sensitive.api_key)
+#   Variables (not Secrets): VITE_* — baked into the bundle; see TECH_STACK.md
+#   Optional: SWA_ORIGIN_FOR_CORS_SMOKE = https://<swa>.azurestaticapps.net — CI runs OPTIONS preflight vs FastAPI ACA
 
-name: Deploy Azure (SWA)
+name: Deploy Azure (SWA) — FastAPI
 
 on:
   workflow_dispatch:
@@ -22,6 +22,10 @@ permissions:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment: azure-siigofiscal
+    concurrency:
+      group: swa-deploy-siigofiscal-fastapi
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
@@ -39,6 +43,21 @@ jobs:
           VITE_APP_LOGO_URL: ${{ vars.VITE_APP_LOGO_URL }}
           VITE_COGNITO_URL: ${{ vars.VITE_COGNITO_URL }}
         run: yarn install --frozen-lockfile && yarn build
+
+      - name: CORS preflight smoke (optional)
+        if: ${{ vars.SWA_ORIGIN_FOR_CORS_SMOKE != '' }}
+        env:
+          API_BASE: ${{ vars.VITE_REACT_APP_BASE_URL }}
+          ORIGIN: ${{ vars.SWA_ORIGIN_FOR_CORS_SMOKE }}
+        run: |
+          set -euo pipefail
+          url="${API_BASE%/}/status/health/api"
+          echo "OPTIONS $url (Origin: $ORIGIN)"
+          curl -sS -D /tmp/cors_headers.txt -o /dev/null -X OPTIONS "$url" \
+            -H "Origin: $ORIGIN" \
+            -H "Access-Control-Request-Method: GET"
+          grep -iE '^(access-control-allow-origin|access-control-allow-credentials):' /tmp/cors_headers.txt \
+            || { echo "Missing CORS allow headers; ensure ACA has FASTAPI_CORS_ORIGINS (siigofiscal Terraform sets it from SWA hostname)."; cat /tmp/cors_headers.txt; exit 1; }
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
