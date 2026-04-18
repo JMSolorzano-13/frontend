@@ -432,7 +432,7 @@ export default function Workspace(props: PropsWithChildren<WorkspaceProps>) {
                 bordered={false}
                 defaultValue={company ?? ""}
                 size="large"
-                onChange={(val) => changeCompany(val, userData, company)}
+                onChange={(val) => changeCompany(val, userData)}
                 showSearch
                 optionFilterProp="children"
                 options={companiesEl}

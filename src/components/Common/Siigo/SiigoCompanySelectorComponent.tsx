@@ -5,7 +5,7 @@ interface ISiigoCompanySelectorComponent {
   company: string | null;
   userData: UserData | null;
   companiesEl: SelectOptionType[];
-  changeCompany: (nextCompany: string, userData: UserData | null, company: string | null) => void;
+  changeCompany: (nextCompany: string, userData: UserData | null) => void;
 }
 
 export default function SiigoCompanySelectorComponent(props: ISiigoCompanySelectorComponent) {
@@ -20,7 +20,7 @@ export default function SiigoCompanySelectorComponent(props: ISiigoCompanySelect
         defaultValue={company ?? ""}
         id="ws-company-select"
         size="large"
-        onChange={(val) => changeCompany(val, userData, company)}
+        onChange={(val) => changeCompany(val, userData)}
         optionFilterProp="children"
         options={companiesEl}
         bordered={false}

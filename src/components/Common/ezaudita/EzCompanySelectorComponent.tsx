@@ -6,7 +6,7 @@ interface IEzCompanySelectorComponent {
   company: string | null;
   userData: UserData | null;
   companiesEl: SelectOptionType[];
-  changeCompany: (nextCompany: string, userData: UserData | null, company: string | null) => void;
+  changeCompany: (nextCompany: string, userData: UserData | null) => void;
 }
 
 export default function EzCompanySelectorComponent(props: IEzCompanySelectorComponent) {
@@ -36,7 +36,7 @@ export default function EzCompanySelectorComponent(props: IEzCompanySelectorComp
       bordered={false}
       defaultValue={company ?? ""}
       size="large"
-      onChange={(val) => changeCompany(val, userData, company)}
+      onChange={(val) => changeCompany(val, userData)}
       showSearch
       optionFilterProp="children"
       options={companiesEl}

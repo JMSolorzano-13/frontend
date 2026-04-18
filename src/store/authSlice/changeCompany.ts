@@ -2,7 +2,7 @@ import _ from "lodash";
 import * as P from "@constants/PageIds";
 import { getAllCompanies } from "@rules/UserDataHelper";
 
-const changeCompany = (nextCompany: string, userData: UserData | null, _company: string | null) => {
+const changeCompany = (nextCompany: string, userData: UserData | null) => {
   const companies = getAllCompanies(userData);
   const companyFound = _.find(companies, ["key", nextCompany]);
   if (companyFound) {

@@ -122,7 +122,7 @@ export default function SelectCompany() {
           rowKey="id"
           onRow={(record) => {
             return {
-              onClick: () => changeCompany(record.identifier, userData, company),
+              onClick: () => changeCompany(record.identifier, userData),
             };
           }}
           columns={columns}

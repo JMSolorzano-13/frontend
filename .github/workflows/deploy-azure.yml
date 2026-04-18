@@ -4,7 +4,8 @@
 # GitHub: Settings → Environments → create environment named exactly: azure-siigofiscal
 #   Secret:  AZURE_STATIC_WEB_APPS_API_TOKEN  (Terraform output frontend_sensitive.api_key)
 #   Variables (not Secrets): VITE_* — baked into the bundle; see TECH_STACK.md
-#   Optional: SWA_ORIGIN_FOR_CORS_SMOKE = https://<swa>.azurestaticapps.net — CI runs OPTIONS preflight vs FastAPI ACA
+#   Optional: SWA_ORIGIN_FOR_CORS_SMOKE = full Origin only, e.g. https://<name>.<n>.azurestaticapps.net
+#   (must match ACA FASTAPI_CORS_ORIGINS exactly — do not append .azurestaticapps.net twice)
 
 name: Deploy Azure (SWA) — FastAPI
 
@@ -51,6 +52,10 @@ jobs:
           ORIGIN: ${{ vars.SWA_ORIGIN_FOR_CORS_SMOKE }}
         run: |
           set -euo pipefail
+          # Fix common copy-paste: ...azurestaticapps.net.azurestaticapps.net
+          while [[ "$ORIGIN" == *azurestaticapps.net.azurestaticapps.net* ]]; do
+            ORIGIN="${ORIGIN/.azurestaticapps.net.azurestaticapps.net/.azurestaticapps.net}"
+          done
           url="${API_BASE%/}/status/health/api"
           echo "OPTIONS $url (Origin: $ORIGIN)"
           curl -sS -D /tmp/cors_headers.txt -o /dev/null -X OPTIONS "$url" \
