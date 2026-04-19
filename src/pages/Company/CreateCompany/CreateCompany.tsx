@@ -83,7 +83,9 @@ export default function CreateCompany() {
         const newUserData: UserData = await (await http.get("/User")).data;
         await dispatch(setUserData(newUserData));
 
-        await dispatch(setCompany(res[0]?.id));
+        await dispatch(
+          setCompany(String(res[0]?.identifier ?? res[0]?.id ?? "")),
+        );
         message.success("Compañía creada con éxito");
         setLoading(false);
 

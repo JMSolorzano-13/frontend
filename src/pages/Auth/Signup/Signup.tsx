@@ -27,12 +27,14 @@ export default function Signup() {
       form.resetFields();
       navigate(`${P.LOGIN.path}?msg=NA_SUCCESS`);
     } catch (e: any) {
-      if (e.request.status === 403) {
+      const status = e.response?.status ?? e.request?.status;
+      const raw =
+        (typeof e.response?.data?.Message === "string" && e.response.data.Message) ||
+        (typeof e.request?.response === "string" && e.request.response) ||
+        "";
+      if (status === 403) {
         message.error("El correo ya esta registrado");
-      } else if (
-        e.request.response.includes("Source name") &&
-        e.request.response.includes("does not exist")
-      ) {
+      } else if (raw.includes("Source name") && raw.includes("does not exist")) {
         message.error(
           "El código de distribuidor no existe, verifica que esté correctamente escrito en la URL e intenta de nuevo",
           9
