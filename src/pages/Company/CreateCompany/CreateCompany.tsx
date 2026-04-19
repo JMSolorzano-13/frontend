@@ -83,17 +83,17 @@ export default function CreateCompany() {
         const newUserData: UserData = await (await http.get("/User")).data;
         await dispatch(setUserData(newUserData));
 
-        await dispatch(
-          setCompany(String(res[0]?.identifier ?? res[0]?.id ?? "")),
-        );
+        const companyKey = String(res[0]?.identifier ?? res[0]?.id ?? "");
+        await dispatch(setCompany(companyKey));
         message.success("Compañía creada con éxito");
         setLoading(false);
 
-        // history.push(P.DASHBOARD.path)
+        // Keep `cid` in the URL through reload so dashboards never open as `/?cid=null`.
+        const cidQuery = companyKey ? `?cid=${encodeURIComponent(companyKey)}` : "";
         if (companies.length > 1) {
-          navigate(P.SELECTCOMPANY.path);
+          navigate(`${P.SELECTCOMPANY.path}${cidQuery}`);
         } else {
-          navigate(P.DASHBOARD.path);
+          navigate(`${P.DASHBOARD.path}${cidQuery}`);
         }
         localStorage.removeItem("subNoCompany");
         window.location.reload();
