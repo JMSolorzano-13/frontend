@@ -34,7 +34,7 @@ export const createCompany = async (
     pas: values.password,
   };
 
-  const res = await http.post("/Company", payload);
+  const res = await http.post("/Company", payload, { timeout: 180000 });
   const content = res.data;
 
   return content as Company[];
